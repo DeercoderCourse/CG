@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Untitled Document</title>
+    </head>
+    
+    
+<canvas id="myCanvas" width="800" height="600"
+style="border:1px solid #d3d3d3;">
+Your browser does not support the HTML5 canvas tag.</canvas>    
+    
+<body>
+<script src="3-polygon-circle-approx.js"></script>
+
+<script>
+function myCanvas()
+{
+    var c = document.getElementById("myCanvas"); 
+    var ctx = c.getContext("2d");
+    
+    var r = 250;
+    var n = 8;
+    var chord = 2 * r * Math.sin(Math.PI / n);
+
+    var circle_x = 300;
+    var circle_y = 300;
+    var circle_radius = 250;
+
+    var vertice = new Array(n * 2 + 10);
+
+    draw_circle(ctx, circle_x, circle_y, circle_radius);
+    
+        
+    // the following are hard-coded as it is related with the cirle size and pos    
+    draw_pixel_2(ctx, 450, 500); /// here is the start point polygon in the circle
+    draw_pixel_2(ctx, 449, 501); /// here is the start point polygon in the circle
+    draw_pixel_2(ctx, 451, 501); /// here is the start point polygon in the circle
+    draw_pixel_2(ctx, 449, 499); /// here is the start point polygon in the circle
+    draw_pixel_2(ctx, 451, 499); /// here is the start point polygon in the circle 
+    
+ //   draw_circle(ctx, 450, 500, chord);    // start point 
+    draw_circle_point(ctx, circle_x, circle_y, circle_radius, 450, 500, chord, vertice); 
+    
+    draw_circle_point(ctx, circle_x, circle_y, circle_radius, vertice[0], vertice[1], chord, vertice);
+    draw_circle_point(ctx, circle_x, circle_y, circle_radius, vertice[2], vertice[3], chord, vertice);
+    draw_circle_point(ctx, circle_x, circle_y, circle_radius, vertice[4], vertice[5], chord, vertice); 
+    draw_circle_point(ctx, circle_x, circle_y, circle_radius, vertice[6], vertice[7], chord, vertice); 
+    draw_circle_point(ctx, circle_x, circle_y, circle_radius, vertice[8], vertice[9], chord, vertice);
+    draw_circle_point(ctx, circle_x, circle_y, circle_radius, vertice[10], vertice[11], chord, vertice);
+    draw_circle_point(ctx, circle_x, circle_y, circle_radius, vertice[12], vertice[13], chord, vertice); 
+    draw_circle_point(ctx, circle_x, circle_y, circle_radius, vertice[14], vertice[15], chord, vertice);
+    draw_circle_point(ctx, circle_x, circle_y, circle_radius, vertice[16], vertice[17], chord, vertice);
+    
+    // resort all the points in the sequence
+    var point1 = {x:vertice[0], y:vertice[1]}; // 500, 145
+    var point2 = {x:vertice[2], y:vertice[3]}; // 450, 500
+    var point3 = {x:vertice[4], y:vertice[5]}; //
+    var point4 = {x:vertice[6], y:vertice[7]};  //
+    var point5 = {x:vertice[8], y:vertice[9]};
+    var point6 = {x:vertice[10],  y:vertice[11]};
+    var point7 = {x:vertice[12], y:vertice[13]};
+    var point8 = {x:vertice[14], y:vertice[15]};
+    
+    draw_line(ctx, point1, point3);
+    draw_line(ctx, point3, point2);
+    draw_line(ctx, point2, point5);
+    draw_line(ctx, point7, point5);
+    draw_line(ctx, point5, point7);
+    draw_line(ctx, point7, point8);
+    draw_line(ctx, point8, point6);
+    draw_line(ctx, point6, point4);
+    draw_line(ctx, point4, point1);
+
+
+    // draw one radius and its othorganal line
+    draw_line(ctx, {x:300, y:300}, point1); 
+    draw_line(ctx, {x:300, y:300}, {x:(point1.x+point3.x)/2, y:(point1.y+point3.y)/2});
+   
+
+
+    show_sigma(r, n); // r = 250, n = 8 
+    console.log(sigma);
+
+    alert(unescape('%u03B5') + "= " + sigma); // show out the value epsil
+}
+
+
+</script>
+<p><button onclick="myCanvas()">Draw Circle</button></p>
+   
+    
+    
+    
+    </body>
+</html>
