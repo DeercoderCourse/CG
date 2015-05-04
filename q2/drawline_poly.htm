@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<canvas id="myCanvas" width="600" height="800"
+style="border:1px solid #d3d3d3;">
+Your browser does not support the HTML5 canvas tag.</canvas>
+
+<script src="2-line-polygon-intersection.js"></script>
+
+<script>
+function myCanvas()
+{
+    var c = document.getElementById("myCanvas"); 
+    var ctx = c.getContext("2d");
+    
+    var startx = {x:'1', y:'2', z:'3'};
+    var starty = {x:'400', y:'500', z:'600'};
+    
+    var starx2 = {x:'10', y:'400', z:'400'};
+    var stary2 = {x:'400', y:'10', z:'400'};
+    
+    var poly1 = {x:'100', y:'200', z:'300'};
+    var poly2 = {x:'300', y:'600', z:'300'};
+    var poly3 = {x:'500', y:'400', z:'300'};
+    var poly4 = {x:'200', y:'100', z:'300'};
+    
+    
+    // draw the first line
+    draw_line(ctx, starx2, stary2);
+    
+    // draw the second polygon
+    draw_poly(ctx, poly1, poly2, poly3, poly4);
+    
+    // show the intersection of line and polygon, in this situation, we should
+    // find each of the polygon and line intersection
+   
+    // line with poly_line(poly1, ploy2) from polygon 
+    show_intersection(ctx, starx2, stary2, poly1, poly2);
+    show_intersection(ctx, starx2, stary2, poly2, poly3);
+    show_intersection(ctx, starx2, stary2, poly3, poly4);
+    show_intersection(ctx, starx2, stary2, poly4, poly1);
+}
+
+
+</script>
+<p><button onclick="myCanvas()">Draw Circle</button></p>
+
+</body>
+</html>
+
