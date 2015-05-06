@@ -11,6 +11,26 @@ function draw_pixel(ctx, point_x, point_y)
 
 }
 
+//this function gives the cross product of vector a(x,y,z) and b(x,y,z)
+function crossProduct(a, b)
+{
+	var cross;
+	cross.x = a.y * b.z - a.z * b.y;
+	cross.y = a.z * b.x - a.x * b.z;
+	cross.z = a.x * b.y - a.y * b.x;
+		
+	return cross;	// three dimension
+}
+
+// this calculate the dotProduct for two vectors a(x,y,z) and b(x,y,z)
+function dotProduct(a, b)
+{
+	var dot;
+	dot = a.x * b.x + a.y * b.y + a.z * b.z;
+
+	return dot;	// value for dot product
+}
+
 function draw_pixel_2(ctx, point_x, point_y)
 {
     var myImageData = ctx.createImageData(1, 1);
@@ -99,7 +119,4 @@ function show_intersection(ctx, startx, endx, starty, endy)
              }
         }
     }
-    
-    
-
 }
