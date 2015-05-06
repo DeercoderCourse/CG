@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<canvas id="myCanvas" width="200" height="100"
+style="border:1px solid #d3d3d3;">
+Your browser does not support the HTML5 canvas tag.</canvas>
+    <head>
+        <title>Exam Q8</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <style>
+            body {
+                font-family: Monospace;
+                background-color: #f0f0f0;
+                margin: 0px;
+                overflow: hidden;
+            }
+            #info { position: absolute; top: 10px; width: 100%; }
+            #container { position: absolute; top: 0px; }
+        </style>
+    </head>
+    <body>
+
+<script src="7-tower.js"></script>
+<script src="6-prism-tested.js"></script>
+<script src="js/three.min.js"></script>
+<script src="js/renderers/Projector.js"></script>
+<script src="js/renderers/CanvasRenderer.js"></script>
+<script src="js/libs/stats.min.js"></script>
+
+
+
+<input type="file" src="input.json"/>
+        
+<form>
+layer number:<br>
+<input type="number" id="layers">
+<br>
+thickness(z height):<br>
+<input type="number" id="thick">
+<br>
+shrink(0~100%):<br>
+<input type="text" id="shrink">%<br>
+
+<br>
+
+<p id="demo">test</p>
+
+</form>
+      
+      
+      
+
+      
+           
+</body>
+    
+<script>
+
+/// This button is used for showing the graph.
+function show()
+{
+    var input4vertice = [{"x": 1, "y": 2,"z": 3}, {"x": 2, "y": 3, "z": 4}, {"x": 3, "y": 5, "z": 8}, {"x": 6, "y": 8, "z": 3}];
+
+    constructAll(input4vertice);
+    
+}
+
+
+// save the parameter so that we could use that to form new vertices and draw them.
+function setParameter()
+{
+    var lay = document.getElementById("layers").value;
+    var thickness = document.getElementById("thick").value;
+    var shrink = document.getElementById("shrink").value;
+    
+    console.log(lay +"," + thickness + "," + shrink);    
+    
+    mLayNum = Number(lay);
+    mHeight = Number(thickness);
+    mShrinkFactor = Number(shrink) / 100;
+
+    console.log(mLayNum + "," + mHeight + "," + mShrinkFactor);
+
+}
+
+
+
+</script>
+
+<p><button onclick="setParameter()">set Parameter</button></p>    
+<p><button onclick="show()">Show the Graph(incomplete)</button></p>    
+    
+</html>
