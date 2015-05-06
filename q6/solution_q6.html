@@ -1,0 +1,82 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<canvas id="myCanvas" width="200" height="100"
+style="border:1px solid #d3d3d3;">
+Your browser does not support the HTML5 canvas tag.</canvas>
+    <head>
+        <title>Exam Q6</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <style>
+            body {
+                font-family: Monospace;
+                background-color: #f0f0f0;
+                margin: 0px;
+                overflow: hidden;
+            }
+            #info { position: absolute; top: 10px; width: 100%; }
+            #container { position: absolute; top: 0px; }
+        </style>
+    </head>
+    <body>
+
+        <script src="6-prism-tested.js"></script>
+        <input type="file" src="input.json"/>
+        
+<form>
+z height:<br>
+<input type="number" id="z_ht">
+<br>
+
+<p id="demo">test</p>
+
+</form>
+      
+
+      
+           
+</body>
+    
+<script>
+
+
+function loadModel()
+{
+    var c = document.getElementById("myCanvas"); 
+    var ctx = c.getContext("2d");
+
+    // Give the input model definition, here we give the four vertices in the polygon    
+    var data = '[{"x": 1, "y": 2,"z": 3}, {"x": 2, "y": 3, "z": 4}, {"x": 3, "y": 5, "z": 8}, {"x": 6, "y": 8, "z": 3}]';
+    
+    load(data);
+}  
+
+function getZHeight()
+{
+    var z = document.getElementById("z_ht").value;
+    console.log("z = " + z);
+    zHeight = z;
+}
+
+function myModel()
+{
+    // first get z value
+    getZHeight();
+    
+    // generate models
+    generateModel(zHeight);
+    
+    // print the model
+    printModel();
+}
+
+
+
+</script>
+
+<p><button onclick="loadModel()">Load Model</button></p>    
+<p><button onclick="getZHeight()">Input z height</button></p>    
+<p><button onclick="myModel()">Generate my Model</button></p>    
+    
+</html>
